@@ -8,7 +8,7 @@ This documentation describes the way to develop your own MagicMirror² modules.
 
 ## General Advice
 
-As MagicMirror has gained huge popularity, so has the number of available
+As MagicMirror² has gained huge popularity, so has the number of available
 modules. For new users and developers alike, it is very time-consuming to
 navigate around the various repositories in order to find out what exactly a
 certain modules does, how it looks and what it depends on. Unfortunately, this
@@ -23,6 +23,24 @@ information in your README file.**
   it free?)
 
 Surely this also help you get better recognition and feedback for your work.
+
+## Module name
+
+We recommend the following pattern: `MMM-MyNewCoolModule`. But it is not
+mandatory - your module will also work with other name patterns (as long as no
+other module has the same name).
+
+## Quick start
+
+To rocket launch your module, you can use the
+[MMM-Template](https://github.com/Dennis-Rosenbaum/MMM-Template) or immediately
+[MMM-Template](https://github.com/new?template_name=MMM-Template&template_owner=Dennis-Rosenbaum).
+Please read the
+[MMM-Template wiki](https://github.com/Dennis-Rosenbaum/MMM-Template/wiki) for
+more information.
+
+**Please note!** This module is an externally developed module and not
+maintained by the MagicMirrorOrg.
 
 ## Module structure
 

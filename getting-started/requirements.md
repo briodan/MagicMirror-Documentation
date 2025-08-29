@@ -7,7 +7,7 @@ various different types of hardware, but new versions will only be tested on a
 Raspberry Pi.
 
 _Electron_, the app wrapper around MagicMirror², only supports the Raspberry Pi
-2, 3 & 4. The Raspberry Pi 0/1 is currently **not** supported. If you want to
+2, 3, 4 & 5. The Raspberry Pi 0/1 is currently **not** supported. If you want to
 run this on a Raspberry Pi 1, use the [server only](installation.md#server-only)
 feature and setup a fullscreen browser yourself. (Yes, people have managed to
 run MM² also on a Pi0, so if you insist, search in the forums.)
@@ -19,15 +19,17 @@ You will need to install the latest full version of
 Raspbian).
 
 If you want to run the software on other Operating Systems, take a look at
-[this section](/getting-started/installation.html#other-operating-systems)
+[this section](/getting-started/installation.md#other-operating-systems)
 
 ::: warning NOTE You **do** need a desktop environment to run Electron!
 
 Using a Lite Version of Raspberry Pi OS **will not work**.
 
-Raspberry Pi OS versions based on Debian "Stretch" are also no longer supported.
+Raspberry Pi OS versions based on Debian "Buster" are also no longer supported.
 :::
 
 ## Node
 
-Although older version of Node might work, we suggest you use Node 18.
+Please refer to the
+[release page](https://github.com/MagicMirrorOrg/MagicMirror/releases) to see
+which node version is required.

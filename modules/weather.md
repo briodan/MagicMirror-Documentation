@@ -10,26 +10,29 @@ one API source. And users can choose which API they want to use as their source.
 The module is in a very early stage, and needs a lot of work. It's API isn't set
 in stone, so keep that in mind when you want to contribute.
 
-## Example
+## Screenshot
 
-![Screenshot of current weather](./screenshots/current.png)
-![Screenshot of forecast](./screenshots/forecast.png)
+### Current weather:
+
+![Screenshot of current weather](./screenshots/weather_current.png)
+
+### Forecast:
+
+![Screenshot of weather forecast](./screenshots/weather_forecast.png)
 
 ## Usage
 
 To use this module, add it to the modules array in the `config/config.js` file:
 
-```javascript
-modules: [
-  {
-    module: "weather",
-    position: "top_right",
-    config: {
-      // See 'Configuration options' for more information.
-      type: "current",
+```js
+    {
+      module: "weather",
+      position: "top_right",
+      config: {
+        // See 'Configuration options' for more information.
+        type: "current",
+      },
     },
-  },
-];
 ```
 
 ## Configuration options
@@ -40,11 +43,11 @@ The following properties can be configured:
 
 | Option                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `weatherProvider`              | Which weather provider should be used. <br><br> **Possible values:** `openweathermap` , `pirateweather` , `weathergov`, `ukmetofficedatahub`, `ukmetoffice`, `weatherbit`, `envcanada`, `openmeteo` or `yr`<br> **Default value:** `openweathermap`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `weatherProvider`              | Which weather provider should be used. <br><br> **Possible values:** `openweathermap` , `pirateweather` , `weathergov`, `ukmetofficedatahub`, `ukmetoffice`, `weatherbit`, `envcanada`, `openmeteo`, `weatherflow`, `SMHI` or `yr`<br> **Default value:** `openweathermap`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `type`                         | Which type of weather data should be displayed. <br><br> **Possible values:** `current` , `hourly` , `daily` , or `forecast` <br> **Default value:** `current` <br><br> **Note:** The `daily` type is another name for the `forecast` type, and the two are interchangeable. <br><br> The `hourly` type is currently only implemented for these provider: <br>- **Environment Canada** (`envcanada`) <br>- **Openmeteo** <br>- **OpenWeatherMap** (`openweathermap`), and only when `/onecall` is used as the specified endpoint. Latitude and longitude [(see below)](/modules/weather.md#openweathermap-options) are **required** for `hourly`. The locationID and location options are ignored when the OpenWeatherMap One Call API is used and you will get wrong weather information.<br>- **Weather.gov** (`weathergov`)<br/>- **Yr** (`yr`) |
 | `units`                        | What units to use. Specified by config.js <br><br> **Possible values:** `config.units` = Specified by config.js, `metric` = Celsius, `imperial` = Fahrenheit <br> **Default value:** `config.units`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `tempUnits`                    | What units to use for temperature. If not specified, the module uses the `units` value from `config.js`. <br><br> **Possible values:** `config.units` = Specified by config.js, `metric` = Celsius, `imperial` = Fahrenheit <br> **Default value:** `config.units`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `windUnits`                    | What units to use for wind speed. If not specified, the module uses the `units` value from `config.js`. <br><br> **Possible values:** `config.units` = Specified by config.js, `mps` or `metric` = metres per second, `kmh` = kilometres per hour, `mph` or `imperial` = miles per hour, `beaufort` = use beaufort scale, `knots` = show wind in knots <br> **Default value:** `units`                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `windUnits`                    | What units to use for wind speed. If not specified, the module uses the `units` value from `config.js`. <br><br> **Possible values:** `config.units` = Specified by config.js, `mps` or `metric` = metres per second, `kmh` = kilometers per hour, `mph` or `imperial` = miles per hour, `beaufort` = use beaufort scale, `knots` = show wind in knots <br> **Default value:** `units`                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `roundTemp`                    | Round temperature value to nearest integer. <br><br> **Possible values:** `true` (round to integer) or `false` (display exact value with decimal point) <br> **Default value:** `false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `degreeLabel`                  | Show the degree label for your chosen units (Metric = C, Imperial = F). <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `updateInterval`               | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `600000` (10 minutes)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -64,23 +67,23 @@ The following properties can be configured:
 
 #### Current weather options
 
-| Option                      | Description                                                                                                                                                                                             |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onlyTemp`                  | Show only current Temperature and weather icon without windspeed, sunset, sunrise time and feels like. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                  |
-| `showWindDirection`         | Show the wind direction next to the wind speed. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`                                                                          |
-| `showWindDirectionAsArrow`  | Show the wind direction as an arrow instead of abbreviation <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                             |
-| `showHumidity`              | Show the current humidity <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                                                               |
-| `showIndoorTemperature`     | If you have another module that emits the `INDOOR_TEMPERATURE` notification, the indoor temperature will be displayed <br> **Default value:** `false`                                                   |
-| `showIndoorHumidity`        | If you have another module that emits the `INDOOR_HUMIDITY` notification, the indoor humidity will be displayed <br> **Default value:** `false`                                                         |
-| `showFeelsLike`             | Shows the Feels like temperature weather. <br><br> **Possible values:** `true` or `false`<br>**Default value:** `true`                                                                                  |
-| `showSun`                   | Shows Sunrise and Sunset time. <br><br> **Possible values:** `true` or `false`<br>**Default value:** `true`                                                                                             |
-| `allowOverrideNotification` | Enables the ability to provide a `CURRENT_WEATHER_OVERRIDE` notification containing a `WeatherObject` payload that will be combined with the existing current weather <br>**Default value:** `false`    |
+| Option                      | Description                                                                                                                                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onlyTemp`                  | Show only current Temperature and weather icon without windspeed, sunset, sunrise time and feels like. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`               |
+| `showWindDirection`         | Show the wind direction next to the wind speed. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`                                                                       |
+| `showWindDirectionAsArrow`  | Show the wind direction as an arrow instead of abbreviation <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                          |
+| `showHumidity`              | Whether and where to show the current humidity <br><br> **Possible values:** `wind`, `temp`, `feelslike`, `below` or `none` <br> **Default value:** `none`                                           |
+| `showIndoorTemperature`     | If you have another module that emits the `INDOOR_TEMPERATURE` notification, the indoor temperature will be displayed <br> **Default value:** `false`                                                |
+| `showIndoorHumidity`        | If you have another module that emits the `INDOOR_HUMIDITY` notification, the indoor humidity will be displayed <br> **Default value:** `false`                                                      |
+| `showFeelsLike`             | Shows the Feels like temperature weather. <br><br> **Possible values:** `true` or `false`<br>**Default value:** `true`                                                                               |
+| `showSun`                   | Shows Sunrise and Sunset time. <br><br> **Possible values:** `true` or `false`<br>**Default value:** `true`                                                                                          |
+| `allowOverrideNotification` | Enables the ability to provide a `CURRENT_WEATHER_OVERRIDE` notification containing a `WeatherObject` payload that will be combined with the existing current weather <br>**Default value:** `false` |
 
 #### Weather forecast options
 
 | Option            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tableClass`      | The class for the forecast table. <br><br> **Default value:** `'small'`                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `tableClass`      | The class for the forecast table. <br><br>**Possible values:** `'xsmall'`, `'small'`, `'medium'`, `'large'`, `'xlarge'` <br> **Default value:** `'small'`                                                                                                                                                                                                                                                                                                                                          |
 | `colored`         | If set to `true`, the min and max temperature are color coded. <br><br> **Default value:** `false`                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `fade`            | Fade the future events to black. (Gradient) <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`                                                                                                                                                                                                                                                                                                                                                                         |
 | `fadePoint`       | Where to start fade? <br><br> **Possible values:** `0` (top of the list) - `1` (bottom of list) <br> **Default value:** `0.25`                                                                                                                                                                                                                                                                                                                                                                     |
@@ -88,13 +91,18 @@ The following properties can be configured:
 | `maxEntries`      | How many entries of an OpenWeatherMap One Call hourly or daily forecast type to return. Specified by config.js <br><br> **Possible values:** `1` - `48` for `'hourly'` , `1` - `7` for `'daily'` <br> **Default value:** `5` (5 entries) <br> This value is optional and specifically meant to be used with the OpenWeatherMap provider and its `'/onecall'` endpoint. By default the weather module will return 5 entries. Intended to act as a more generalized of the `maxNumberOfDays` option. |
 | `ignoreToday`     | If set to `true`, today's weather will not be displayed. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                                                                                                                                                                                                                                                                                                                           |
 
-### Openweathermap options
+### OpenWeatherMap options
+
+**Note:** When using the type: "forecast" config, if you are using a free api
+key, the max forecast days you can retrieve is 5. Providing anything higher than
+5 for the `maxNumberOfDays` option will still return the default of 5. To
+retrieve more than 5 days you must subscribe to the OpenWeatherMap API.
 
 | Option            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiVersion`      | The OpenWeatherMap API version to use. <br><br> **Default value:** `2.5`                                                                                                                                                                                                                                                                                                                                                                             |
+| `apiVersion`      | The OpenWeatherMap API version to use. <br><br> **Default value:** `'3.0'`                                                                                                                                                                                                                                                                                                                                                                           |
 | `apiBase`         | The OpenWeatherMap base URL. <br><br> **Default value:** `'https://api.openweathermap.org/data/'`                                                                                                                                                                                                                                                                                                                                                    |
-| `weatherEndpoint` | The OpenWeatherMap API endPoint. <br><br> **Possible values:** `'/weather'` , `'/onecall'` , `'/forecast'` (free users) or `'/forecast/daily'` (paying users or old apiKey only) <br> **Default value:** `'/weather'`                                                                                                                                                                                                                                |
+| `weatherEndpoint` | The OpenWeatherMap API endPoint. <br><br> **Possible values:** `'/weather'` , `'/onecall'` , `'/forecast'` (free users) or `'/forecast/daily'` (paying users or old apiKey only) <br> **Default value:** `'/onecall'`                                                                                                                                                                                                                                |
 | `locationID`      | Location ID from [OpenWeatherMap](https://openweathermap.org/find) **This will override anything you put in location.** <br> Leave blank if you want to use location. <br> **Example:** `1234567` <br> **Default value:** `false` <br><br> **Note:** When the `location` and `locationID` are both not set, the location will be based on the information provided by the calendar module. The first upcoming event with location data will be used. |
 | `location`        | The location used for weather information. <br><br> **Example:** `'Amsterdam,Netherlands'` <br> **Default value:** `false` <br><br> **Note:** When the `location` and `locationID` are both not set, the location will be based on the information provided by the calendar module. The first upcoming event with location data will be used.                                                                                                        |
 | `lat`             | Latitude of the location used for weather information. <br><br> **Example:** `40.7128` <br> **Default value:** `0` <br><br> **Note:** Latitude and longitude are **REQUIRED** if `weatherEndpoint` is set to `'/onecall'`. The `locationID` and `location` options are ignored when the OpenWeatherMap One Call API is used.                                                                                                                         |
@@ -105,43 +113,42 @@ The following properties can be configured:
 
 | Option            | Description                                                                                                                                               |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`         | The Pirate Weather base URL. <br><br> **Possible value:** `'https://api.pirateweather.net'` <br> This value is **REQUIRED**                               |
-| `weatherEndpoint` | The Pirate Weather API endPoint. <br><br> **Possible values:** `/forecast` <br> This value is **REQUIRED**                                                |
+| `apiBase`         | The Pirate Weather base URL. <br><br> **Default value:** `'https://api.pirateweather.net'`                                                                |
+| `weatherEndpoint` | The Pirate Weather API endPoint. <br><br> **Default value:** `/forecast`                                                                                  |
 | `apiKey`          | The [Pirate Weather](https://pirateweather.net/) API key, which can be obtained by creating a Pirate Weather account. <br><br> This value is **REQUIRED** |
 | `lat`             | The geo coordinate latitude. <br><br> This value is **REQUIRED**                                                                                          |
 | `lon`             | The geo coordinate longitude. <br><br> This value is **REQUIRED**                                                                                         |
 
 ### Weather.gov options
 
-| Option    | Description                                                                                                                |
-| --------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase` | The weather.gov base URL. <br><br> **Possible value:** `'https://api.weather.gov/points/'` <br> This value is **REQUIRED** |
-| `lat`     | The geo coordinate latitude. <br><br> This value is **REQUIRED**                                                           |
-| `lon`     | The geo coordinate longitude. <br><br> This value is **REQUIRED**                                                          |
+| Option    | Description                                                                               |
+| --------- | ----------------------------------------------------------------------------------------- |
+| `apiBase` | The weather.gov base URL. <br><br> **Default value:** `'https://api.weather.gov/points/'` |
+| `lat`     | The geo coordinate latitude. <br><br> This value is **REQUIRED**                          |
+| `lon`     | The geo coordinate longitude. <br><br> This value is **REQUIRED**                         |
 
 ### UK Met Office (`ukmetoffice`) options
 
 | Option       | Description                                                                                                                                                                           |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`    | The UKMO base URL. <br><br> **Possible value:** `'https://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/'` <br> This value is **REQUIRED**                                |
+| `apiBase`    | The UKMO base URL. <br><br> **Default value:** `'https://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/'`                                                                 |
 | `locationID` | The UKMO API location code. <br><br> **Possible values:** `322942` <br> This value is **REQUIRED**                                                                                    |
 | `apiKey`     | The [UK Met Office](https://www.metoffice.gov.uk/datapoint/getting-started) API key, which can be obtained by creating an UKMO Datapoint account. <br><br> This value is **REQUIRED** |
 
 ### UK Met Office (`ukmetofficedatahub`) options
 
-| Option      | Description                                                                                                                                                                                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`   | The UKMO DataHub base URL.<br><br> **Possible value:** `'https://api-metoffice.apiconnect.ibmcloud.com/metoffice/production/v0/forecasts/point/'` <br> This value is **REQUIRED**                                                  |
-| `apiKey`    | Your API key (MetOffice API ClientID). See the [Getting Started](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/start) guide on the Met Office website for creating a new account. <br> This value is **REQUIRED** |
-| `apiSecret` | Your API secret (MetOffice API ClientSecret). <br> This value is **REQUIRED**                                                                                                                                                      |
-| `lat`       | The latitude coordinate for the desired location. <br><br> **Possible value:** `50.7271915` <br> This value is **REQUIRED**                                                                                                        |
-| `lon`       | The longitude coordinate for the desired location. <br><br> **Possible value:** `-3.4776089` <br> This value is **REQUIRED**                                                                                                       |
+| Option    | Description                                                                                                                                                                                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `apiBase` | The UKMO DataHub base URL.<br><br> **Default value:** `'https://data.hub.api.metoffice.gov.uk/sitespecific/v0/point/'`                                                                                                                                       |
+| `apiKey`  | Your API key (MetOffice API ClientID). See the [Getting Started](https://datahub.metoffice.gov.uk) guide on the Met Office website for creating a new account. Subscribe to the Site Specific Forecast service - Global Spot.<br> This value is **REQUIRED** |
+| `lat`     | The latitude coordinate for the desired location. <br><br> **Possible value:** `50.7271915` <br> This value is **REQUIRED**                                                                                                                                  |
+| `lon`     | The longitude coordinate for the desired location. <br><br> **Possible value:** `-3.4776089` <br> This value is **REQUIRED**                                                                                                                                 |
 
 ### Weatherbit options
 
 | Option            | Description                                                                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`         | The Weather base URL.<br><br> **Possible value:** `https://api.weatherbit.io/v2.0` <br> This value is **REQUIRED**                              |
+| `apiBase`         | The Weather base URL.<br><br> **Default value:** `'https://api.weatherbit.io/v2.0'`                                                             |
 | `weatherEndpoint` | The Weatherbit API endPoint.<br><br> **Possible values:** `/current`, `/forecast/daily` <br> This value is **REQUIRED**                         |
 | `apiKey`          | The [Weatherbit API](https://www.weatherbit.io) key which can be obtained by creating an WeatherBit account <br><br> This value is **REQUIRED** |
 | `lat`             | The geo coordinate latitude. <br><br> This value is **REQUIRED**                                                                                |
@@ -163,8 +170,8 @@ The following properties can be configured:
 When using the `type: "forecast"` config, the module can display a max of 6 days
 (Today + the next 5 days). The forecast for each day reflects the daytime
 forecast. The Today forecast is a special case that will reflect the daytime
-forecast until late afternoon, after which Today will be reflecting the nightime
-forecast for the current day.
+forecast until late afternoon, after which Today will be reflecting the
+nighttime forecast for the current day.
 
 When using the `type: "hourly"` config, the module can display a max of 24
 hours.
@@ -177,17 +184,17 @@ hours.
 
 ### Weatherflow options
 
-| Option      | Description                                                                                                                                                    |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`   | The Weatherflow base URL.<br><br> **Possible value:** `https://swd.weatherflow.com/swd/rest/` <br> This value is **REQUIRED**                                  |
-| `token`     | The [Weatherflow](https://weatherflow.github.io/Tempest/api/) token which can be obtained in the webapp of Weatherflow <br><br> This value is **REQUIRED**     |
-| `stationid` | The id of your weather station from wich you want to show the data. This also can be obtained in the webapp of Weatherflow <br><br> This value is **REQUIRED** |
+| Option      | Description                                                                                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiBase`   | The Weatherflow base URL.<br><br> **Default value:** `'https://swd.weatherflow.com/swd/rest/'`                                                                  |
+| `token`     | The [Weatherflow](https://weatherflow.github.io/Tempest/api/) token which can be obtained in the webapp of Weatherflow <br><br> This value is **REQUIRED**      |
+| `stationid` | The id of your weather station from which you want to show the data. This also can be obtained in the webapp of Weatherflow <br><br> This value is **REQUIRED** |
 
 ### Open-Meteo (`openmeteo`) options
 
 | Option            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiBase`         | The Weatherflow base URL.<br><br> **Possible value:** `https://api.open-meteo.com/v1` <br> This value is **REQUIRED**                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `apiBase`         | The Weatherflow base URL.<br><br> **Default value:** `'https://api.open-meteo.com/v1'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `lat`             | The latitude coordinate for the desired location. <br><br> **Possible value:** `59.322665` <br> This value is **REQUIRED**                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `lon`             | The longitude coordinate for the desired location. <br><br> **Possible value:** `18.069666` <br> This value is **REQUIRED**                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `maxNumberOfDays` | How many days of forecast to return. Specified by config.js <br><br> **Possible values:** `1` - `8` <br> **Default value:** `5` (5 days) <br> This value is optional. By default the weather module will return 5 days.                                                                                                                                                                                                                                                                                                                                                           |

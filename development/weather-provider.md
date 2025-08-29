@@ -8,7 +8,7 @@ provider for the weather module.
 This is the script in which the weather provider will be defined. In its most
 simple form, the weather provider must implement the following:
 
-```javascript
+```js
 WeatherProvider.register("yourprovider", {
   providerName: "YourProvider",
 
@@ -20,8 +20,9 @@ WeatherProvider.register("yourprovider", {
 
 ## Weather provider methods to implement
 
-::: warning IMPORTANT The weather module expects the weather data to be in
-metric units:
+::: warning IMPORTANT
+
+The weather module expects the weather data to be in metric units:
 
 - `degree celsius` for temperatures
 - `meters per second` for wind
@@ -30,9 +31,10 @@ Some weather APIs already deliver their data in those units.
 
 If that is not the case you can use helper methods from the `weatherutils.js`
 class to convert the data.
+
 :::
 
-#### `fetchCurrentWeather()`
+### `fetchCurrentWeather()`
 
 This method is called when the weather module tries to fetch the current weather
 of your provider. The implementation of this method is required for current
@@ -43,7 +45,7 @@ After the response is processed, the current weather information (as a
 `this.setCurrentWeather(currentWeather);`. It will then automatically refresh
 the module DOM with the new data.
 
-#### `fetchWeatherForecast()`
+### `fetchWeatherForecast()`
 
 This method is called when the weather module tries to fetch the weather of your
 provider. The implementation of this method is required for forecast support.
@@ -54,7 +56,7 @@ response is processed, the weather forecast information (as an array of
 `this.setWeatherForecast(forecast);`. It will then automatically refresh the
 module DOM with the new data.
 
-#### `fetchWeatherHourly()`
+### `fetchWeatherHourly()`
 
 This method is called when the weather module tries to fetch the weather of your
 provider. The implementation of this method is required for hourly support. The
@@ -67,16 +69,16 @@ module DOM with the new data.
 
 ## Weather Provider instance methods
 
-#### `init()`
+### `init()`
 
 Called when a weather provider is initialized.
 
-#### `setConfig(config)`
+### `setConfig(config)`
 
 Called to set the config, this config is the same as the weather module's
 config.
 
-#### `start()`
+### `start()`
 
 Called when the weather provider is about to start.
 
@@ -84,42 +86,42 @@ Called when the weather provider is about to start.
 
 This returns a WeatherDay object for the current weather.
 
-#### `weatherForecast()`
+### `weatherForecast()`
 
 This returns an array of WeatherDay objects for the weather forecast.
 
-#### `weatherHourly()`
+### `weatherHourly()`
 
 This returns an array of WeatherDay objects for the hourly weather forecast.
 
-#### `fetchedLocation()`
+### `fetchedLocation()`
 
 This returns the name of the fetched location or an empty string.
 
-#### `setCurrentWeather(currentWeatherObject)`
+### `setCurrentWeather(currentWeatherObject)`
 
 Set the currentWeather and notify the delegate that new information is
 available.
 
-#### `setWeatherForecast(weatherForecastArray)`
+### `setWeatherForecast(weatherForecastArray)`
 
 Set the weatherForecastArray and notify the delegate that new information is
 available.
 
-#### `setWeatherHourly(weatherHourlyArray)`
+### `setWeatherHourly(weatherHourlyArray)`
 
 Set the weatherHourlyArray and notify the delegate that new information is
 available.
 
-#### `setFetchedLocation(name)`
+### `setFetchedLocation(name)`
 
 Set the fetched location name.
 
-#### `updateAvailable()`
+### `updateAvailable()`
 
 Notify the delegate that new weather is available.
 
-#### `fetchData(url, method, data)`
+### `fetchData(url, method, data)`
 
 A convenience function to make requests. It returns a promise.
 
@@ -134,16 +136,16 @@ This object holds all data from your provider for usage in the template.
 | windDirection  | `number` | Direction of the wind in degrees.                                                                               |
 | sunrise        | `object` | [Moment.js](https://momentjs.com/) object of sunrise.                                                           |
 | sunset         | `object` | [Moment.js](https://momentjs.com/) object of sunset.                                                            |
-| temperature    | `number` | Current temperature in metric `celcius degree`.                                                                 |
-| minTemperature | `number` | Lowest temperature of the day in metric `celcius degree`.                                                       |
-| maxTemperature | `number` | Highest temperature of the day in metric `celcius degree`.                                                      |
+| temperature    | `number` | Current temperature in metric `celsius degree`.                                                                 |
+| minTemperature | `number` | Lowest temperature of the day in metric `celsius degree`.                                                       |
+| maxTemperature | `number` | Highest temperature of the day in metric `celsius degree`.                                                      |
 | weatherType    | `string` | Icon name of the weather type. <br> Possible values: [WeatherIcons](https://www.npmjs.com/package/weathericons) |
 | humidity       | `number` | Percentage of humidity                                                                                          |
 | rain           | `number` | Metric: `millimeters` <br> Imperial: `inches`                                                                   |
 | snow           | `number` | Metric: `millimeters` <br> Imperial: `inches`                                                                   |
 | precipitation  | `number` | Metric: `millimeters` <br> Imperial: `inches` <br> UK Met Office provider: `percent`                            |
 
-#### Current weather
+### Current weather
 
 For the current weather object the following properties are required:
 
@@ -155,7 +157,7 @@ For the current weather object the following properties are required:
 - windDirection
 - windSpeed
 
-#### Weather forecast
+### Weather forecast
 
 For the forecast weather object the following properties are required:
 

@@ -7,8 +7,7 @@ sending news feed specific notifications to the module.
 
 ## Screenshot
 
-- News Feed Screenshot using the NYT
-  ![NYT News Feed Screenshot](./screenshots/newsfeed_screenshot.png)
+![NYT News Feed Screenshot](./screenshots/newsfeed.png)
 
 ## Using the module
 
@@ -16,29 +15,27 @@ sending news feed specific notifications to the module.
 
 To use this module, add it to the modules array in the `config/config.js` file:
 
-```javascript
-modules: [
-  {
-    module: "newsfeed",
-    position: "bottom_bar", // This can be any of the regions. Best results in center regions.
-    config: {
-      // The config property is optional.
-      // If no config is set, an example calendar is shown.
-      // See 'Configuration options' for more information.
+```js
+    {
+      module: "newsfeed",
+      position: "bottom_bar", // This can be any of the regions. Best results in center regions.
+      config: {
+        // The config property is optional.
+        // If no config is set, an example calendar is shown.
+        // See 'Configuration options' for more information.
 
-      feeds: [
-        {
-          title: "New York Times",
-          url: "https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml",
-        },
-        {
-          title: "BBC",
-          url: "https://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml?edition=uk",
-        },
-      ],
+        feeds: [
+          {
+            title: "New York Times",
+            url: "https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+          },
+          {
+            title: "BBC",
+            url: "https://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml?edition=uk",
+          },
+        ],
+      },
     },
-  },
-];
 ```
 
 ### Notifications
@@ -46,7 +43,7 @@ modules: [
 #### Interacting with the module
 
 MagicMirror's
-[notification mechanism](https://github.com/MichMich/MagicMirror/tree/master/modules#thissendnotificationnotification-payload)
+[notification mechanism](https://github.com/MagicMirrorOrg/MagicMirror/tree/master/modules#thissendnotificationnotification-payload)
 allows to send notifications to the `newsfeed` module. The following
 notifications are supported:
 
@@ -62,7 +59,7 @@ notifications are supported:
 #### Notifications sent by the module
 
 MagicMirror's
-[notification mechanism](https://github.com/MichMich/MagicMirror/tree/master/modules#thissendnotificationnotification-payload)
+[notification mechanism](https://github.com/MagicMirrorOrg/MagicMirror/tree/master/modules#thissendnotificationnotification-payload)
 can also be used to send notifications from the current module to all other
 modules. The following notifications are broadcasted from this module:
 
@@ -78,7 +75,7 @@ Note the payload of the sent notification event is ignored.
 The following example shows how the next news article title can be displayed on
 the MagicMirror.
 
-```javascript
+```js
 this.sendNotification("ARTICLE_NEXT");
 ```
 
@@ -125,9 +122,11 @@ The following properties can be configured:
 The `feeds` property contains an array with multiple objects. These objects have
 the following properties:
 
-| Option         | Description                                                                                                                                                       |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`        | The name of the feed source to be displayed above the news items. <br><br> This property is optional.                                                             |
-| `url`          | The url of the feed used for the headlines. <br><br> **Example:** `'https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml'`                                   |
-| `encoding`     | The encoding of the news feed. <br><br> This property is optional. <br> **Possible values:** `'UTF-8'`, `'ISO-8859-1'`, etc ... <br> **Default value:** `'UTF-8'` |
-| `useCorsProxy` | Uses the internal cors proxy to avoid cors errors. <br><br> This property is optional. <br> **Possible values:** `true` or `false` <br> **Default value:** `true` |
+| Option            | Description                                                                                                                                                       |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`           | The name of the feed source to be displayed above the news items. <br><br> This property is optional.                                                             |
+| `url`             | The url of the feed used for the headlines. <br><br> **Example:** `'https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml'`                                   |
+| `encoding`        | The encoding of the news feed. <br><br> This property is optional. <br> **Possible values:** `'UTF-8'`, `'ISO-8859-1'`, etc ... <br> **Default value:** `'UTF-8'` |
+| `useCorsProxy`    | Uses the internal cors proxy to avoid cors errors. <br><br> This property is optional. <br> **Possible values:** `true` or `false` <br> **Default value:** `true` |
+| `ignoreOldItems`  | Overrides the property defined for the module (see above) for the specific feed                                                                                   |
+| `ignoreOlderThan` | Overrides the property defined for the module (see above) for the specific feed                                                                                   |
